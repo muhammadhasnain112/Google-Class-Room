@@ -5,16 +5,8 @@ if (!token) {
 
 let aside = document.getElementById('aside')
 let arr = JSON.parse(localStorage.getItem('class')) || [];
+aaside()
 
-for (let i = 0; i < arr.length; i++) {
-    aside.innerHTML += ` <aside>
-        <div class="div1" id="aaa">
-            <h4 id="h4">${arr[i].classname}</h4>
-            <p id="para">${arr[i].section}</p>
-        </div>
-        <h5 id="h5">Class Code : ${arr[i].Classcode} </h5>
-    </aside>`
-}
 
 
 let create = document.getElementById('create')
@@ -49,8 +41,9 @@ create.addEventListener('click', function () {
             let index = Math.floor(Math.random() * charset.length);
             password += charset[index]
         }
+        let newName = input1.value.slice(0, 1).toUpperCase() + input1.value.slice(1)
         let obj = {
-            classname: input1.value,
+            classname: newName,
             section: input2.value,
             subject: input3.value,
             Classcode: password,
@@ -69,16 +62,7 @@ create.addEventListener('click', function () {
             ClearAll.style.display = 'none'
             localStorage.setItem('class', JSON.stringify(arr))
         })
-        for (let i = 0; i < arr.length; i++) {
-            aside.innerHTML += ` <aside>
-                <div class="div1" id="aaa">
-                    <h4 id="h4">${arr[i].classname}</h4>
-                    <p id="para">${arr[i].section}</p>
-                    <p id="para">${arr[i].userName}</p>
-                </div>
-                <h5 id="h5">Class Code : ${arr[i].Classcode} </h5>
-            </aside>`
-        }
+        aaside()
     })
     document.getElementById('cancel').addEventListener('click', () => {
         section.innerHTML = ``
@@ -114,9 +98,11 @@ classJoin.addEventListener('click', () => {
             if (ID.value == arr[i].Classcode) {
                 Swal.fire("Welcome!", "ID Is Correct!", "success").then(() => {
                     arr[i]['userName'] = upper,
-                    localStorage.setItem("class", JSON.stringify(arr));
+                        localStorage.setItem("class", JSON.stringify(arr));
+                    let para1 = document.querySelectorAll('.para1')
+                    para1[i].innerText = arr[i].userName
                 });
-            }else{
+            } else {
                 Swal.fire({
                     title: "Sorry!",
                     text: "ID Is Incorrect!",
@@ -126,3 +112,22 @@ classJoin.addEventListener('click', () => {
         }
     })
 })
+
+
+function aaside() {
+    for (let i = 0; i < arr.length; i++) {
+        aside.innerHTML += ` <aside>
+        <div class="div1" id="aaa">
+            <h4 id="h4">${arr[i].classname}</h4>
+            <p id="para">${arr[i].section}</p>
+            <p class="para1"></p>
+            </div>
+            <h5 id="h5">Class Code : ${arr[i].Classcode} </h5>
+            </aside>`
+        let para1 = document.querySelectorAll('.para1')
+        para1[i].innerText = arr[i].userName
+        if (para1[i].innerText == "undefined") {
+            para1[i].innerText = ""
+        }
+    }
+}

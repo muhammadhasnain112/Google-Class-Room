@@ -83,7 +83,10 @@ main button {
     border-radius: 10px;
 
 }
-
+#para{
+    /* text-align: center; */
+margin-left: 10px;
+}
 main fieldset {
     margin-left: 5.5vw;
     width: 70%;
@@ -222,19 +225,16 @@ aside .div1 {
     border-radius: 10px;
     background-color: #9c9c9c61;
 }
-
 aside #h4,
 .para {
     margin-left: 5%;
     /* padding: 10px; */
     /* margin-top: 5%; */
 }
-
 aside #h5 {
     margin-top: 40%;
     margin-left: 5%;
 }
-
 #ClearAll {
     margin-left: 45%;
     display: none;
@@ -246,20 +246,16 @@ aside #h5 {
     background-color: white;
     border-radius: 10px;
 }
-
-
-header button {}
-
 #abc {
     height: 20px;
     width: 105px;
     background-color: #19A15F !important;
-    /* border: 1px solid red; */
 }
 
 
 
 .para1 {
-    /* font-weight: bolder; */
-    /* margin-top: 10vh; */
+    font-weight: bolder;
+    margin-top: 10vh;
+    margin-left: 10px;
 }
